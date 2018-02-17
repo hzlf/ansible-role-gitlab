@@ -38,6 +38,13 @@ gitlab_smtp_openssl_verify_mode: "none"
 gitlab_smtp_ca_path: "/etc/ssl/certs"
 gitlab_smtp_ca_file: "/etc/ssl/certs/ca-certificates.crt"
 
+# Container registry
+gitlab_registry_enable: "false"
+gitlab_registry_http_addr: "0.0.0.0:5000" # internal address
+gitlab_registry_external_url: ""
+gitlab_registry_host: ""
+gitlab_registry_port: "443"
+
 # 2-way SSL Client Authentication support.
 gitlab_nginx_ssl_verify_client: ""
 gitlab_nginx_ssl_client_certificate: ""

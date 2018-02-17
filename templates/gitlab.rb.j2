@@ -59,6 +59,19 @@ gitlab_rails['smtp_openssl_verify_mode'] = '{{ gitlab_smtp_openssl_verify_mode }
 gitlab_rails['smtp_ca_path'] = '{{ gitlab_smtp_ca_path }}'
 gitlab_rails['smtp_ca_file'] = '{{ gitlab_smtp_ca_file }}'
 
+# Container registry
+# More detail at
+# https://docs.gitlab.com/ce/administration/container_registry.html
+{% if gitlab_registry_enable is defined and gitlab_registry_enable == 'true' %}
+registry['enable'] = {{ gitlab_registry_enable }}
+registry_external_url 'https://registry.pbi.io'
+registry['registry_http_addr'] = '{{ gitlab_registry_http_addr }}'
+gitlab_rails['registry_enabled'] = {{ gitlab_registry_enable }}
+gitlab_rails['registry_host'] = '{{ gitlab_registry_host }}'
+gitlab_rails['registry_port'] = {{ gitlab_registry_port }}
+registry_nginx['enable'] = false
+{% endif %}
+
 # 2-way SSL Client Authentication.
 {% if gitlab_nginx_ssl_verify_client %}
 nginx['ssl_verify_client'] = "{{ gitlab_nginx_ssl_verify_client }}"

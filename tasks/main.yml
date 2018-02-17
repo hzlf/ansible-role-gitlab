@@ -65,3 +65,9 @@
     group: root
     mode: 0600
   notify: restart gitlab
+
+## TODO: this is a hack... investigate where problem comes from & fix there...
+- name: Fix socket permissions
+  file:
+    path: /var/opt/gitlab/gitlab-workhorse/socket
+    mode: 0777
