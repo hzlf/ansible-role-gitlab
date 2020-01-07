@@ -45,6 +45,13 @@ gitlab_registry_external_url: ""
 gitlab_registry_host: ""
 gitlab_registry_port: "443"
 
+
+# google oauth2 authentication
+gitlab_google_oauth_enable: "false"
+gitlab_google_oauth_client_id: "---"
+gitlab_google_oauth_client_secret: "---"
+
+
 # 2-way SSL Client Authentication support.
 gitlab_nginx_ssl_verify_client: ""
 gitlab_nginx_ssl_client_certificate: ""

@@ -72,6 +72,26 @@ gitlab_rails['registry_port'] = {{ gitlab_registry_port }}
 registry_nginx['enable'] = false
 {% endif %}
 
+
+
+
+# google oauth2 authentication
+# More detail at
+# https://lab.pbi.io/help/integration/google.md
+{% if gitlab_google_oauth_enable is defined and gitlab_google_oauth_enable == 'true' %}
+gitlab_rails['omniauth_enabled'] = true
+gitlab_rails['omniauth_block_auto_created_users'] = true
+gitlab_rails['omniauth_allow_single_sign_on'] = ['google_oauth2']
+gitlab_rails['omniauth_providers'] = [
+  {
+    "name" => "google_oauth2",
+    "app_id" => "{{ gitlab_google_oauth_client_id }}",
+    "app_secret" => "{{ gitlab_google_oauth_client_secret }}",
+    "args" => { "access_type" => "offline", "approval_prompt" => '' }
+  }
+]
+{% endif %}
+
 # 2-way SSL Client Authentication.
 {% if gitlab_nginx_ssl_verify_client %}
 nginx['ssl_verify_client'] = "{{ gitlab_nginx_ssl_verify_client }}"
